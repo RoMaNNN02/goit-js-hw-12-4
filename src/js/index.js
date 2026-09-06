@@ -1,4 +1,4 @@
-import { StopWatch } from "./stopwatch.js";
+import { CountdownTimer } from "./stopwatch.js";
 
 const startBtn = document.querySelector(".button-1");
 const stopBtn = document.querySelector(".button-2");
@@ -7,8 +7,11 @@ const timer = document.querySelector(".timer");
 if (timer) {
   timer.style.display = "none";
 }
-const stopwatch = new StopWatch({ selector: ".timer" });
 
+const stopwatch = new CountdownTimer({
+  selector: ".timer",
+  targetDate: new Date("Sep 16, 2026 11:11:11"),
+});
 startBtn.addEventListener("click", () => {
   timer.style.display = "flex";
   stopwatch.start();

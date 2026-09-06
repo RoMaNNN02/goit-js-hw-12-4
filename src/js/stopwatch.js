@@ -1,4 +1,4 @@
-export class StopWatch {
+export class CountdownTimer {
   constructor({ selector }) {
     this.stopwatchDisplay = document.querySelector(selector);
     this.daysSpan = this.stopwatchDisplay.querySelector("[data-value='days']");
@@ -20,7 +20,7 @@ export class StopWatch {
   }
 
   #updateDisplay({ days, hour, min, sec }) {
-    const time = `days:${(this.daysSpan.textContent = days.toString().padStart(2, "0"))}hours: ${(this.hourSpan.textContent = hour.toString().padStart(2, "0"))}minutes:${(this.minsSpan.textContent = min.toString().padStart(2, "0"))}seconds:${(this.secsSpan.textContent = sec.toString().padStart(2, "0"))}`;
+    const time = `days:${(this.daysSpan.textContent = days.toString().padStart(2, "0"))} hours: ${(this.hourSpan.textContent = hour.toString().padStart(2, "0"))}minutes: ${(this.minsSpan.textContent = min.toString().padStart(2, "0"))} seconds:${(this.secsSpan.textContent = sec.toString().padStart(2, "0"))}`;
     this.stopwatchDisplay.textContent = time;
   }
 
@@ -48,6 +48,7 @@ export class StopWatch {
       this.#updateDisplay(stringTime);
     }, 1000);
   }
+
   pause() {
     clearInterval(this.intervalId);
     this.isActive = false;
@@ -57,6 +58,5 @@ export class StopWatch {
     this.isActive = false;
     this.intervalId = null;
     this.startTime = null;
-    this.#updateDisplay({ days: 11, hour: 11, min: 11, sec: 11 });
   }
 }
